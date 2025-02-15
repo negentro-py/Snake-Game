@@ -12,5 +12,8 @@ git clone https://github.com/negentro-py/Snake-Game.git .
 ## Run this in the VSC terminal 
 corepack enable pnpm
 
+## Then to see live changes to the website, run
+pnpm dev
+
 ## When you want to get the latest version of the code
 git pull
