@@ -29,8 +29,7 @@ function App() {
       <header className='bg-transparent'>
         <div className='container mx-auto'>
           <h1 className='animate-[text] text-center mt-30 bg-gradient-to-r bg-clip-text text-transparent 
-  from-[#e79995] via-[#da935d] to-[#9a3bd2]'>
-
+            from-[#e79995] via-[#da935d] to-[#9a3bd2]'>
             Snake Game
           </h1>
         </div>
@@ -50,11 +49,9 @@ function App() {
           </div>
         )}
 
-
         {selectCharacter && !gameStarted && (
           <CharacterSelect />
         )}
-
 
         {selectCharacter && !gameStarted && (
           <div className="flex justify-center mt-4">
@@ -68,14 +65,11 @@ function App() {
           </div>
         )}
 
-
         {gameStarted && (
           <div className="relative flex justify-center mt-4">
-            {/* Make sure the GameBoard is rendered properly */}
             <GameBoard />
           </div>
         )}
-
 
         {gameStarted && (
           <div className="flex justify-center mt-4">
@@ -89,7 +83,7 @@ function App() {
           </div>
         )}
       </div>
-    </main >
+    </main>
   )
 }
 
