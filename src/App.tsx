@@ -1,34 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <main className="bg-[#f8f1fc] flex flex-col w-full min-h-screen">
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <nav className="flex items center justify-center w-full h-10 bg-[#da935d]">
+        </nav>
       </div>
-      <h1>Snake Game</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+      <header className='bg-transparent'>
+        <div className='container mx-auto'>
+          <h1 className='text-center mt-30 text-6xl font-extrabold text-[#0f0516] underline decoration-[#9a3bd2]'> Snake Game </h1>
+        </div>
+      </header>
+
+      <section id='gameboard' className="bg-transparent flex items-center mt-20 justify-center">
+        <div className="grid grid-cols-20 grid-rows-20 gap-1 w-90 h-90 border border-gray-300">
+          <div className="w-full h-full bg-gray-200 border border-gray-300"></div>
+        </div>
+      </section>
+
+      <section id='buttons'>
+        <div className="mt-8 flex items-center justify-center space-x-4">
+          <button className='bg-[#e79995] text-black px-4 py-2 rounded hover:bg-red-950'>Start Game!</button>
+          <button className='bg-[#e79995] text-black px-4 py-2 rounded hover:bg-red-950'>Try Again</button>
+        </div>
+      </section>
+    </main>
   )
 }
 
