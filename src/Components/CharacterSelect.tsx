@@ -10,12 +10,12 @@ export function CharacterSelect() {
     return (
         <section id='characterselect' className='flex items-center mt-20 justify-center'>
 
-            <div className="character-selection-container flex flex-col items-center justify-center w-180 h-180 rounded-2xl bg-[#da935d]">
+            <div className="character-selection-container flex flex-col items-center  w-180 h-180 rounded-2xl bg-[#da935d]">
                 <div >
-                    <h2 className='py-4'> Select Your Character! </h2>
+                    <h2 className='py-15'> Select Your Character! </h2>
                 </div>
 
-                <div className="character-options text-pretty">
+                <div className="character-options flex flex-row justify-center">
                     {selectCharacter && (
                         <Character
                             imageSrc={selectCharacter.imageSrc}
