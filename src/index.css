@@ -21,6 +21,70 @@ body {
   height: 100vh;
 }
 
+h1 {
+  color: #0f0516 text-6xl font-extrabold
+}
+
+h2 {
+  color: #0f0516
+}
+
+.screen {
+  display: none;
+  text-align: center;
+}
+
+#characterSelectionScreen {
+  display: block;
+
+}
+
+
+#gameBoardScreen {
+  display: none;
+  /* Initially hidden */
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+.screen.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+
+button {
+  padding: 10px 20px;
+  background-color: #e79995;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.character-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.character {
+  cursor: pointer;
+}
+
+.character img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.character:hover img {
+  transform: scale(1.1);
+}
+
 #root {
   width: 100vw;
   height: 100vh;
