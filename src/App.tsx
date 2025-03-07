@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Navbar } from './Components/Navbar'
 import { GameBoard } from './Components/GameBoard'
 import { CharacterSelect } from './Components/CharacterSelect'
+//import { ScoreBoard } from './Components/ScoreBoard'
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
