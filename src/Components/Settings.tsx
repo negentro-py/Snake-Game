@@ -1,18 +1,46 @@
 import { useState } from "react";
 
-export function Settings(){
-    const [isSettingsOpen, seIsSettingsOpen] = useState(false);
-    const [isMusicOn, setIsMusicOn] = useState(false);
+export function Settings() {
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [isMusicOn, setIsMusicOn] = useState(true);
+
+    const openPopup = () => {
+        setIsSettingsOpen(true);
+    };
+
+    const closePopup = () => {
+        setIsSettingsOpen(false);
+    };
+
+    const toggleMusic = () => {
+        setIsMusicOn(!isMusicOn);
+    };
 
     return (
-        <section id='settings' className='flex items-center mt-20 justify-center'>
-            <div className="settings-container flex flex-col items-center  w-180 h-180 rounded-2xl bg-[#da935d]">
-                <div className="settings-options flex flex-row justify-center">
-                    <button id="settingsButton" type="button">
-                        Settings
-                    </button>
+        <section id="settings">
+            <button id="settingsButton" type="button" onClick={openPopup}>
+                <img src="/icons8-settings-48.png" alt="settings icon" />
+            </button>
+            <div className={`popup ${isSettingsOpen ? 'open-popup' : ''}`}>
+                <div className="popup-content">
+                    <h2>Settings</h2>
+
+                    <div className="popup-content-inner">
+                        <p>Music</p>
+                        <label className="switch">
+                            <input
+                                type="checkbox"
+                                id="musicSwitch"
+                                checked={isMusicOn}
+                                onChange={toggleMusic}
+                            />
+                            <span className="slider round"></span>
+                        </label>
+                        <button id="closeSettings" type="button" onClick={closePopup}>Close</button>
+                    </div>
                 </div>
             </div>
-        </section >
-    )
+        </section>
+    );
 }
+export default Settings;
