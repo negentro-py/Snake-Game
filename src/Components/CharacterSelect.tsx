@@ -19,13 +19,13 @@ export function CharacterSelect({ setGameStarted }: { setGameStarted: React.Disp
     };
 
     return (
-        <section id='characterselect' className='flex items-center justify-center bg-[#f9f1f3] min-h-screen'>
+        <section id='characterselect' className='flex items-center justify-center min-h-screen'>
             <div className="character-selection-container flex flex-col items-center justify-center w-180 h-160 rounded-2xl bg-gradient-to-r from-[#da935d] to-[#e79995] p-6 shadow-2xl">
                 <div className="flex justify-center w-full mb-6">
                     <h2 className='text-[#9a3bd2] text-center font-bold text-2xl'>Select Your Character!</h2>
                 </div>
 
-                <div className="character-options flex flex-wrap justify-center gap-6 mb-6 w-full">
+                <div className="character-options flex flex-wrap justify-center gap-6 mb-6 w-full animate-bounce duration-75">
                     <div onClick={() => handleCharacterClick('Mouse', './src/assets/mouse.jpg')} className="character text-center cursor-pointer p-4 rounded-lg border-4 border-[#9a3bd2] hover:scale-105 transition-transform duration-200">
                         <img src='./src/assets/mouse.jpg' alt="Mouse" className="w-24 h-24 rounded-full border-4 border-[#9a3bd2] mb-2" />
                         <h3 className="text-[#9a3bd2] text-xl">Mouse</h3>
@@ -55,7 +55,7 @@ export function CharacterSelect({ setGameStarted }: { setGameStarted: React.Disp
                         />
                     )}
 
-                    {error && <h3 className="text-red-500 mt-2">{error}</h3>}
+                    {error && <h3 className="text-red-500 mt-2 text-center">{error}</h3>}
 
                     <button
                         onClick={handleStartGame}
