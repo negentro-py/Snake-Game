@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <main className="bg-[#f8f1fc] flex flex-col w-full min-h-screen">
+    <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full min-h-screen">
 
       <Navbar />
 
