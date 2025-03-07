@@ -1,3 +1,5 @@
+import type { Config } from "tailwindcss";
+
 modules.export = {
     theme: {
         extend: {

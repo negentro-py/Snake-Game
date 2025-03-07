@@ -8,10 +8,6 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [selectCharacter, setSelectCharacter] = useState(false);
 
-  const startGame = () => {
-    setGameStarted(true);
-  }
-
   const characterChoice = () => {
     setSelectCharacter(true);
   }
@@ -22,13 +18,13 @@ function App() {
   }
 
   return (
-    <main className="bg-[#f8f1fc] flex flex-col w-full min-h-screen">
+    <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full min-h-screen">
 
       <Navbar />
 
       <header className='bg-transparent'>
         <div className='container mx-auto'>
-          <h1 className='animate-[text] text-center mt-30 bg-gradient-to-r bg-clip-text text-transparent 
+          <h1 className='animate-text text-center mt-30 bg-gradient-to-r bg-clip-text text-transparent 
             from-[#e79995] via-[#da935d] to-[#9a3bd2]'>
             Snake Game
           </h1>
@@ -50,19 +46,7 @@ function App() {
         )}
 
         {selectCharacter && !gameStarted && (
-          <CharacterSelect />
-        )}
-
-        {selectCharacter && !gameStarted && (
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={startGame}
-              id="Start Game"
-              className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded"
-            >
-              Start Game!
-            </button>
-          </div>
+          <CharacterSelect setGameStarted={setGameStarted} />
         )}
 
         {gameStarted && (
