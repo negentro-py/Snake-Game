@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Navbar } from './Components/Navbar'
 import { GameBoard } from './Components/GameBoard'
 import { CharacterSelect } from './Components/CharacterSelect'
-//import { ScoreBoard } from './Components/ScoreBoard'
+import { ScoreBoard } from './Components/ScoreBoard'
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -51,8 +51,15 @@ function App() {
         )}
 
         {gameStarted && (
-          <div className="relative flex justify-center mt-4">
-            <GameBoard />
+          <div className="flex justify-center mt-4 space-x-4">
+            <div className="flex-shrink-0">
+              {/* Game Board */}
+              <GameBoard />
+            </div>
+            <div className="flex-shrink-0">
+              {/* ScoreBoard */}
+              <ScoreBoard />
+            </div>
           </div>
         )}
 
@@ -68,6 +75,7 @@ function App() {
           </div>
         )}
       </div>
+
     </main>
   )
 }
