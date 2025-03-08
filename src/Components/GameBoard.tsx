@@ -16,12 +16,11 @@ export function GameBoard() {
                                 <div
                                     key={index}
                                     className="w-full h-full"
-                                    style = {{ backgroundColor: isOffWhite ? "#f8f6f0" : ""}}
+                                    style={{ backgroundColor: isOffWhite ? "#f8f6f0" : "" }}
                                 >
-                                    {index === imageIndex &&(
-                                        <img src="./src/assets/Lemon.png/>"
-                                        className = "w-6 h-6"
-                                        />
+                                    {index === imageIndex && (
+                                        <img src="./src/assets/Lemon.png" className="w-6 h-6" />
+
                                     )}
                                 </div>
                             );
