@@ -14,19 +14,157 @@ export function Settings() {
 
     const toggleMusic = () => {
         setIsMusicOn(!isMusicOn);
+        console.log(`Music is now ${!isMusicOn ? 'on' : 'off'}`);
     };
 
     return (
+        <>
+            <style>{`
+            .settings-container {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                cursor: pointer;
+                width: 125px;
+                height: 150px;
+                transform: scale(0.5);
+                }
+            
+            .settings-icon {
+                width: 130px;
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .popup {
+                width: 330px;
+                height: 220px;
+                background: linear-gradient(to bottom right, #e79995, #9a3bd2);
+                border-radius: 6px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                transform: scale(0.5);
+                text-align: center;
+                padding: 0 30px 30px;
+                color: black;
+                visibility: hidden;
+                transition: all 0.5s ease;
+                z-index: 99;
+                opacity: 0;
+            }
+            
+            .open-popup {
+                visibility: visible;
+                opacity: 1;
+                bottom: 50%;
+                left: 50%;
+                transform: translate(-50%, 50%) scale(1);
+            }
+
+            .popup-content h2 {
+                text-align: center;
+                font-family: 'Press Start 2P', sans-serif;
+                font-size: 2rem;
+                border-radius: 5px;
+                width: 100%;
+                border-color: black;
+            }
+
+            .popup-content-inner {
+                padding: 20px;
+                text-align: justify;
+                font-family: 'Press Start 2P', sans-serif;
+                color: white;
+            }
+
+            .popup-content-inner h3 {
+                margin-bottom: 15px;
+                font-size: 14px;
+                text-shadow: 1px 1px 1px black;
+            }
+
+            .popup-content-inner button {
+                width: 100%;
+                margin-top: 50px;
+                padding: 10px 0px;
+                background: #da935d;
+                color: white;
+                border:0;
+                outline: none;
+                font-size: 18px;
+                border-radius: 4px;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  
+                }
+
+            .popup-content-inner button:hover {
+                background: #e79995;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+                margin-left: 10px;
+            }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+            }
+
+            input:checked + .slider {
+                background-color: #da935d;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(26px);
+            }
+
+            .music-control {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            } 
+
+`}</style>
         <section id="settings">
-            <button id="settingsButton" type="button" onClick={openPopup}>
-                <img src="/icons8-settings-48.png" alt="settings icon" />
+            <button className="settings-container" id="settingsButton" type="button" onClick={openPopup}>
+                <img src="settings.png" alt="settings icon" className="settings-icon"/>
             </button>
             <div className={`popup ${isSettingsOpen ? 'open-popup' : ''}`}>
                 <div className="popup-content">
                     <h2>Settings</h2>
 
                     <div className="popup-content-inner">
-                        <p>Music</p>
+                        <div className="music-control">
+                        <h3>Music</h3>
                         <label className="switch">
                             <input
                                 type="checkbox"
@@ -34,13 +172,15 @@ export function Settings() {
                                 checked={isMusicOn}
                                 onChange={toggleMusic}
                             />
-                            <span className="slider round"></span>
+                            <span className="slider"></span>
                         </label>
-                        <button id="closeSettings" type="button" onClick={closePopup}>Close</button>
                     </div>
+                </div>
+                <button id="closeSettings" type="button" onClick={closePopup}>Close</button>
                 </div>
             </div>
         </section>
+        </>
     );
 }
 export default Settings;
