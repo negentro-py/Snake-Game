@@ -41,7 +41,7 @@ function App() {
               id="Choose a Character"
               className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded"
             >
-              Choose a Character
+              <h3>Choose a Character</h3>
             </button>
           </div>
         )}
@@ -70,7 +70,7 @@ function App() {
               id="tryAgain"
               className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded"
             >
-              Try Again
+              <h3>Try Again</h3>
             </button>
           </div>
         )}

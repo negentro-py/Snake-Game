@@ -1,6 +1,6 @@
 export function ScoreBoard() {
     return (
-        <div className="scoreboard flex h-160 w-80  mt-20 bg-gradient-to-b from-[#0f0516] to-[#9a3bd2] rounded-xl border-[#9a3bd2] flex-col items-center justify-between">
+        <div className="scoreboard animate-shake flex h-160 w-80  mt-20 bg-gradient-to-b from-[#0f0516] to-[#9a3bd2] rounded-xl border-[#9a3bd2] flex-col items-center justify-between">
 
             <div className="flex justify-between w-full px-4 mt-2">
                 <div className="score text-center tracking-wide text-[#da935d]">
