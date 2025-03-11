@@ -21,7 +21,7 @@ export function Settings() {
     return (
         <section id="settings">
             <button className="settings-container" id="settingsButton" type="button" onClick={openPopup}>
-                <img src="settings.png" alt="settings icon" className="settings-icon" />
+                <img src="./src/assets/settings.png" alt="settings icon" className="settings-icon" />
             </button>
             <div className={`popup ${isSettingsOpen ? 'open-popup' : ''}`}>
                 <div className="popup-content">
@@ -41,10 +41,18 @@ export function Settings() {
                             </label>
                         </div>
                     </div>
-                    <button id="closeSettings" type="button" onClick={closePopup}>Close</button>
+                    <button
+                        id="closeSettings"
+                        type="button"
+                        onClick={closePopup}
+                        className="close-button"
+                    >
+                        <h3>Close</h3>
+                    </button>
                 </div>
             </div>
         </section>
     );
 }
+
 export default Settings;

@@ -6,7 +6,7 @@
     width: 125px;
     height: 150px;
     transform: scale(0.5);
-    }
+}
 
 .settings-icon {
     width: 130px;
@@ -68,13 +68,13 @@
     padding: 10px 0px;
     background: #da935d;
     color: white;
-    border:0;
+    border: 0;
     outline: none;
     font-size: 18px;
     border-radius: 4px;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  
-    }
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
 .popup-content-inner button:hover {
     background: #e79995;
@@ -116,11 +116,11 @@
     transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #da935d;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(26px);
 }
 
@@ -129,4 +129,35 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-} 
+}
+
+/* Close Button Styling */
+.close-button {
+    background-color: #da935d;
+    /* Match the button color scheme */
+    color: white;
+    /* White text for contrast */
+    border: none;
+    /* Remove default border */
+    padding: 10px 20px;
+    /* Add padding for better clickability */
+    border-radius: 4px;
+    /* Rounded corners to match other buttons */
+    font-size: 18px;
+    /* Consistent font size */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
+    transition: background-color 0.3s ease;
+    /* Smooth hover transition */
+    width: 100%;
+    /* Full width to match other buttons */
+    margin-top: 20px;
+    /* Add some spacing above the button */
+}
+
+.close-button:hover {
+    background-color: #e79995;
+    /* Hover effect to match other buttons */
+}
