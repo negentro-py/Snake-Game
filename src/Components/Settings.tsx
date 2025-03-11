@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './settings.css';
 
 export function Settings() {
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -14,19 +15,21 @@ export function Settings() {
 
     const toggleMusic = () => {
         setIsMusicOn(!isMusicOn);
+        console.log(`Music is now ${!isMusicOn ? 'on' : 'off'}`);
     };
 
     return (
         <section id="settings">
-            <button id="settingsButton" type="button" onClick={openPopup}>
-                <img src="/icons8-settings-48.png" alt="settings icon" />
+            <button className="settings-container" id="settingsButton" type="button" onClick={openPopup}>
+                <img src="settings.png" alt="settings icon" className="settings-icon"/>
             </button>
             <div className={`popup ${isSettingsOpen ? 'open-popup' : ''}`}>
                 <div className="popup-content">
                     <h2>Settings</h2>
 
                     <div className="popup-content-inner">
-                        <p>Music</p>
+                        <div className="music-control">
+                        <h3>Music</h3>
                         <label className="switch">
                             <input
                                 type="checkbox"
@@ -34,10 +37,11 @@ export function Settings() {
                                 checked={isMusicOn}
                                 onChange={toggleMusic}
                             />
-                            <span className="slider round"></span>
+                            <span className="slider"></span>
                         </label>
-                        <button id="closeSettings" type="button" onClick={closePopup}>Close</button>
                     </div>
+                </div>
+                <button id="closeSettings" type="button" onClick={closePopup}>Close</button>
                 </div>
             </div>
         </section>
