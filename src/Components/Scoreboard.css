@@ -1,0 +1,79 @@
+/* Pixelated Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.pixel-font {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Retro Glow Effect */
+.retro-glow {
+    box-shadow: 0 0 10px #9a3bd2, 0 0 20px #9a3bd2, 0 0 40px #9a3bd2;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px #9a3bd2, 0 0 20px #9a3bd2, 0 0 40px #9a3bd2;
+    }
+
+    to {
+        box-shadow: 0 0 20px #9a3bd2, 0 0 40px #9a3bd2, 0 0 80px #9a3bd2;
+    }
+}
+
+/* Pixel Text Effect */
+.pixel-text {
+    text-shadow: 2px 2px 0 #da935d;
+}
+
+/* Flickering Animation for Leaderboard Title */
+.retro-flicker {
+    animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        opacity: 1;
+    }
+
+    20%,
+    24%,
+    55% {
+        opacity: 0.5;
+    }
+}
+
+/* Glow Effect for Scores */
+.glow {
+    animation: score-glow 1s infinite alternate;
+}
+
+@keyframes score-glow {
+    from {
+        text-shadow: 0 0 5px #da935d, 0 0 10px #da935d;
+    }
+
+    to {
+        text-shadow: 0 0 10px #da935d, 0 0 20px #da935d;
+    }
+}
+
+
+/* Leaderboard List Styling */
+.leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.leaderboard-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #9a3bd2;
+}

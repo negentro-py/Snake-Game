@@ -1,0 +1,22 @@
+/* Profile Component Styles */
+.profile-container {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.profile-container input,
+.profile-container textarea {
+    width: 100%;
+    outline: none;
+}
+
+.profile-container button {
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-container button:hover {
+    background-color: #da935d;
+    color: #9a3bd2;
+}

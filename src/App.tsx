@@ -1,11 +1,16 @@
-
 import './App.css';
 import { useState } from 'react';
 import { Navbar } from './Components/Navbar';
 import { GameBoard } from './Components/GameBoard';
 import { CharacterSelect } from './Components/CharacterSelect';
 import { ScoreBoard } from './Components/ScoreBoard';
-import { Settings } from './Components/Settings'
+import { Settings } from './Components/Settings';
+import { Profile } from './Components/Profile'; // Import the Profile component
+
+interface LeaderboardEntry {
+  username: string;
+  score: number;
+}
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -14,6 +19,9 @@ function App() {
   const [gameEnded, setGameEnded] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [isProfileOpen, setIsProfileOpen] = useState(false); // State to control Profile popup
+  const [username, setUsername] = useState<string>(''); // State to store the username
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]); // State to store leaderboard data
 
   const characterChoice = () => {
     setSelectCharacter(true);
@@ -32,70 +40,105 @@ function App() {
     if (score > highScore) {
       setHighScore(score);
     }
+    // Add the current score to the leaderboard
+    if (username) {
+      setLeaderboard((prev) => [
+        ...prev,
+        { username, score }
+      ]);
+    }
+  };
+
+  const openProfile = () => {
+    setIsProfileOpen(true);
+  };
+
+  const closeProfile = () => {
+    setIsProfileOpen(false);
+  };
+
+  const handleSaveProfile = (newUsername: string, bio: string) => {
+    setUsername(newUsername); // Save the username
+    console.log("Bio:", bio); // Optional: Handle bio if needed
+    closeProfile(); // Close the profile popup
   };
 
   return (
     <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full min-h-screen">
-      <Navbar />
-      <Settings />
+      {/* Blur effect when profile is open */}
+      <div className={`${isProfileOpen ? 'backdrop-blur-sm' : ''}`}>
+        <Navbar openProfile={openProfile} />
+        <Settings />
 
-      <header className='bg-transparent'>
-        <div className='container mx-auto'>
-          <h1 className='animate-text text-center mt-30 bg-gradient-to-r bg-clip-text text-transparent 
-                        from-[#e79995] via-[#da935d] to-[#9a3bd2]'>
-            Snake Game
-          </h1>
-        </div>
-      </header>
+        <header className='bg-transparent'>
+          <div className='container mx-auto'>
+            <h1 className='animate-text text-center mt-30 bg-gradient-to-r bg-clip-text text-transparent 
+                                    from-[#e79995] via-[#da935d] to-[#9a3bd2]'>
+              Snake Game
+            </h1>
+          </div>
+        </header>
 
-      <div className="flex-grow flex flex-col items-center justify-center">
-        {!selectCharacter && (
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={characterChoice}
-              id="Choose a Character"
-              className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded"
-            >
-              <h3>Choose a Character</h3>
-            </button>
+        {/* Profile Popup */}
+        {isProfileOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-transparent p-6 rounded-lg">
+              <Profile
+                onSave={handleSaveProfile}
+                onClose={closeProfile}
+              />
+            </div>
           </div>
         )}
 
-        {selectCharacter && !gameStarted && (
-          <CharacterSelect
-            setGameStarted={setGameStarted}
-            setSelectedCharacter={setSelectedCharacter}
-          />
-        )}
+        <div className="flex-grow flex flex-col items-center justify-center">
+          {!selectCharacter && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={characterChoice}
+                id="Choose a Character"
+                className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded"
+              >
+                <h3>Choose a Character</h3>
+              </button>
+            </div>
+          )}
 
-        {gameStarted && selectedCharacter && !gameEnded && (
-          <div className="flex flex-col items-center space-y-8">
-            {/* Game Board */}
-            <GameBoard
-              selectedCharacter={selectedCharacter}
-              onGameEnd={handleGameEnd}
-              setScore={setScore}
+          {selectCharacter && !gameStarted && (
+            <CharacterSelect
+              setGameStarted={setGameStarted}
+              setSelectedCharacter={setSelectedCharacter}
             />
-          </div>
-        )}
+          )}
 
-        {/* ScoreBoard (only shown when game ends) */}
-        {gameEnded && (
-          <div className="flex flex-col items-center space-y-8">
-            <ScoreBoard score={score} highScore={highScore} />
-            <button
-              onClick={tryAgain}
-              id="tryAgain"
-              className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded"
-            >
-              <h3>Try Again</h3>
-            </button>
-          </div>
-        )}
+          {gameStarted && selectedCharacter && !gameEnded && (
+            <div className="flex flex-col items-center space-y-8">
+              {/* Game Board */}
+              <GameBoard
+                selectedCharacter={selectedCharacter}
+                onGameEnd={handleGameEnd}
+                setScore={setScore}
+              />
+            </div>
+          )}
+
+          {/* ScoreBoard (only shown when game ends) */}
+          {gameEnded && (
+            <div className="flex flex-col items-center space-y-8">
+              <ScoreBoard score={score} highScore={highScore} leaderboard={leaderboard} />
+              <button
+                onClick={tryAgain}
+                id="tryAgain"
+                className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded"
+              >
+                <h3>Try Again</h3>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
 }
 
 export default App;
-

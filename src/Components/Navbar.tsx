@@ -2,7 +2,11 @@ import { useState } from "react";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode"; // To decode the JWT token
 
-export function Navbar() {
+interface NavbarProps {
+    openProfile: () => void; // Function to open the profile popup
+}
+
+export function Navbar({ openProfile }: NavbarProps) {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [user, setUser] = useState(null); // Store user information
 
@@ -47,14 +51,14 @@ export function Navbar() {
                     {isProfileOpen && (
                         <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200">
                             <ul className="py-2">
-                                {user && (
+                                {user && ( // Only show Profile button if user is logged in
                                     <li>
-                                        <a
-                                            href="/profile"
-                                            className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                        <button
+                                            onClick={openProfile} // Open Profile popup
+                                            className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
                                         >
-                                            <span className="ml-2">Profile</span>
-                                        </a>
+                                            Profile
+                                        </button>
                                     </li>
                                 )}
                                 {!user && (
