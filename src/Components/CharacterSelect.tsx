@@ -1,70 +1,94 @@
 import { useState } from 'react';
-import { Character } from './Character';
+import './Character.css';
 
-export function CharacterSelect({ setGameStarted }: { setGameStarted: React.Dispatch<React.SetStateAction<boolean>> }) {
-    const [selectCharacter, setSelectCharacter] = useState<{ name: string, imageSrc: string } | null>(null);
+export function CharacterSelect({
+    setGameStarted,
+    setSelectedCharacter,
+}: {
+    setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
+    setSelectedCharacter: React.Dispatch<React.SetStateAction<{ name: string; imageSrc: string } | null>>;
+}) {
     const [error, setError] = useState<string | null>(null);
+    const [selectedCharacterPreview, setSelectedCharacterPreview] = useState<{ name: string; imageSrc: string } | null>(null);
 
     const handleCharacterClick = (characterName: string, imageSrc: string) => {
-        setSelectCharacter({ name: characterName, imageSrc });
-        setError(null); // Reset error when a character is selected
+        setSelectedCharacter({ name: characterName, imageSrc });
+        setSelectedCharacterPreview({ name: characterName, imageSrc });
+        setError(null); // Clear any previous error
     };
 
     const handleStartGame = () => {
-        if (!selectCharacter) {
-            setError("Please select a character before starting the game.");
+        if (!selectedCharacterPreview) {
+            setError('Please select a character before starting the game.');
         } else {
             setGameStarted(true);
         }
     };
 
     return (
-        <section id='characterselect' className='flex items-center justify-center min-h-screen'>
-            <div className="character-selection-container flex flex-col items-center justify-center w-180 h-160 rounded-2xl bg-gradient-to-r from-[#da935d] to-[#e79995] p-6 shadow-2xl">
-                <div className="flex justify-center w-full mb-6">
-                    <h2 className='text-[#9a3bd2] text-center font-bold text-2xl'>Select Your Character!</h2>
+        <section className="flex items-center justify-center min-h-screen pixel-font ">
+            <div className="character-selection-container bg-[#2d1b3d] p-8 rounded-lg border-4 border-[#da935d] shadow-[0_0_20px_#da935d] pixel-border">
+                <h2 className="text-4xl text-[#e79995] text-center mb-8 uppercase tracking-wider pixel-text">
+                    Select Your Character!
+                </h2>
+
+                <div className="character-options grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                    {['Mouse', 'Cat', 'Dog', 'Snake'].map((character) => (
+                        <div
+                            key={character}
+                            onClick={() => handleCharacterClick(character, `./src/assets/${character.toLowerCase()}.png`)}
+                            className="cursor-pointer flex flex-col items-center p-4 bg-[#9a3bd2] rounded-lg hover:bg-[#da935d] transition-all duration-300 pixel-border"
+                        >
+                            <img
+                                src={`./src/assets/${character.toLowerCase()}.png`}
+                                alt={character}
+                                className="w-20 h-20 mb-2 pixelated border-4 border-[#e79995] rounded-full"
+                            />
+                            {character === 'Snake' ? (
+                                <h3 className="text-xl uppercase animate-gradient bg-gradient-to-r from-[#da935d] via-[#9a3bd2] to-[#e79995] bg-clip-text text-transparent pixel-text">
+                                    {character}
+                                </h3>
+                            ) : (
+                                <h3 className="text-xl text-[#e79995] uppercase pixel-text">
+                                    {character}
+                                </h3>
+                            )}
+                        </div>
+                    ))}
                 </div>
 
-                <div className="character-options flex flex-wrap justify-center gap-6 mb-6 w-full animate-bounce duration-75">
-                    <div onClick={() => handleCharacterClick('Mouse', './src/assets/mouse.jpg')} className="character text-center cursor-pointer p-4 rounded-lg border-4 border-[#9a3bd2] hover:scale-105 transition-transform duration-200">
-                        <img src='./src/assets/mouse.jpg' alt="Mouse" className="w-24 h-24 rounded-full border-4 border-[#9a3bd2] mb-2" />
-                        <h3 className="text-[#9a3bd2] text-xl">Mouse</h3>
-                    </div>
-
-                    <div onClick={() => handleCharacterClick('Cat', './src/assets/cat.jpeg')} className="character text-center cursor-pointer p-4 rounded-lg border-4 border-[#9a3bd2] hover:scale-105 transition-transform duration-200">
-                        <img src='./src/assets/cat.jpeg' alt="Cat" className="w-24 h-24 rounded-full border-4 border-[#9a3bd2] mb-2" />
-                        <h3 className="text-[#9a3bd2] text-xl">Cat</h3>
-                    </div>
-
-                    <div onClick={() => handleCharacterClick('Dog', './src/assets/dog.png')} className="character text-center cursor-pointer p-4 rounded-lg border-4 border-[#9a3bd2] hover:scale-105 transition-transform duration-200">
-                        <img src='./src/assets/dog.png' alt="Dog" className="w-24 h-24 rounded-full border-4 border-[#9a3bd2] hover: bg-white mb-2" />
-                        <h3 className="text-[#9a3bd2] text-xl">Dog</h3>
-                    </div>
-
-                    <div onClick={() => handleCharacterClick('Snake', './src/assets/snake.png')} className="character text-center cursor-pointer p-4 rounded-lg border-4 border-[#9a3bd2] hover:scale-105 transition-transform duration-200">
-                        <img src='./src/assets/snake.png' alt="Snake" className="w-24 h-24 rounded-full border-4 border-[#9a3bd2] mb-2" />
-                        <h3 className="text-[#9a3bd2] text-xl">Snake</h3>
-                    </div>
-                </div>
-
-                <div className="selected-character-and-start mt-6 flex flex-col items-center justify-center w-full">
-                    {selectCharacter && (
-                        <Character
-                            imageSrc={selectCharacter.imageSrc}
-                            name={selectCharacter.name}
+                {/* Display the selected character preview with retro style */}
+                {selectedCharacterPreview && (
+                    <div className="cursor-pointer flex flex-col items-center p-4 bg-[#9a3bd2] rounded-lg hover:bg-[#da935d] transition-all duration-300 pixel-border">
+                        <img
+                            src={selectedCharacterPreview.imageSrc}
+                            alt={selectedCharacterPreview.name}
+                            className="w-20 h-20 mb-2 pixelated border-4 border-[#e79995] rounded-full"
                         />
-                    )}
+                        {selectedCharacterPreview.name === 'Snake' ? (
+                            <h3 className="text-xl uppercase animate-gradient bg-gradient-to-r from-[#da935d] via-[#9a3bd2] to-[#e79995] bg-clip-text text-transparent pixel-text">
+                                {selectedCharacterPreview.name}
+                            </h3>
+                        ) : (
+                            <h3 className="text-xl text-[#e79995] uppercase pixel-text">
+                                {selectedCharacterPreview.name}
+                            </h3>
+                        )}
+                    </div>
+                )}
 
-                    {error && <h3 className="text-red-500 mt-2 text-center">{error}</h3>}
+                <button
+                    onClick={handleStartGame}
+                    className="w-full bg-[#e79995] hover:bg-[#9a3bd2] text-black hover:text-white py-3 px-6 rounded-lg border-4 border-[#da935d] hover:border-[#e79995] transition-all duration-300 uppercase tracking-wider pixel-text"
+                >
+                    Start Game!
+                </button>
 
-                    <button
-                        onClick={handleStartGame}
-                        id="Start Game"
-                        className="bg-[#9a3bd2] hover:bg-[#e79995] text-black hover:text-white py-2 px-4 rounded-lg mt-4 border-2 border-[#9a3bd2] hover:border-[#e79995] transition-all duration-300"
-                    >
-                        Start Game!
-                    </button>
-                </div>
+                {error && (
+                    <p className="text-red-500 text-center mb-4 pixel-text">
+                        {error}
+                    </p>
+                )}
             </div>
         </section>
     );
