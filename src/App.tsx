@@ -4,6 +4,7 @@ import { Navbar } from './Components/Navbar'
 import { GameBoard } from './Components/GameBoard'
 import { CharacterSelect } from './Components/CharacterSelect'
 import { ScoreBoard } from './Components/ScoreBoard'
+import { Settings } from './Components/Settings'
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full min-h-screen">
-
+      <Settings />
       <Navbar />
 
       <header className='bg-transparent'>
