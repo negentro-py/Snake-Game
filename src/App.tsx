@@ -4,6 +4,7 @@ import { Navbar } from './Components/Navbar';
 import { GameBoard } from './Components/GameBoard';
 import { CharacterSelect } from './Components/CharacterSelect';
 import { ScoreBoard } from './Components/ScoreBoard';
+import { Settings } from './Components/Settings'
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -35,6 +36,7 @@ function App() {
   return (
     <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full min-h-screen">
       <Navbar />
+      <Settings />
 
       <header className='bg-transparent'>
         <div className='container mx-auto'>
@@ -69,7 +71,6 @@ function App() {
           <div className="flex flex-col items-center space-y-8">
             {/* Game Board */}
             <GameBoard
-              key={score} // Force re-render when score changes
               selectedCharacter={selectedCharacter}
               onGameEnd={handleGameEnd}
               setScore={setScore}
@@ -96,3 +97,4 @@ function App() {
 }
 
 export default App;
+
