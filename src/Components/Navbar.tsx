@@ -49,15 +49,15 @@ export function Navbar({ openProfile }: NavbarProps) {
 
                     {/* Dropdown Menu */}
                     {isProfileOpen && (
-                        <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200">
-                            <ul className="py-2">
+                        <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-[#e79995]">
+                            <ul className="py-2">ray-200"
                                 {user && ( // Only show Profile button if user is logged in
                                     <li>
                                         <button
                                             onClick={openProfile} // Open Profile popup
-                                            className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                            className="w-full text-left px-4 py-2 text-[#9a3bd2] hover:bg-gray-100 transition-colors duration-200"
                                         >
-                                            Profile
+                                            <h3>Profile</h3>
                                         </button>
                                     </li>
                                 )}
@@ -80,9 +80,9 @@ export function Navbar({ openProfile }: NavbarProps) {
                                     <li>
                                         <button
                                             onClick={handleLogout}
-                                            className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                            className="w-full text-left px-4 py-2 text-[#9a3bd2] hover:bg-gray-100 transition-colors duration-200"
                                         >
-                                            Logout
+                                            <h3>Logout</h3>
                                         </button>
                                     </li>
                                 )}
