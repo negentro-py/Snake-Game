@@ -72,7 +72,7 @@ function App() {
 
         <header className='bg-transparent'>
           <div className='container mx-auto'>
-            <h1 className='animate-text text-center mt-30 bg-gradient-to-r bg-clip-text text-transparent 
+            <h1 className='animate-text text-center mt-10 bg-gradient-to-r bg-clip-text text-transparent 
                                     from-[#e79995] via-[#da935d] to-[#9a3bd2]'>
               Snake Game
             </h1>
