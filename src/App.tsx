@@ -64,7 +64,7 @@ function App() {
   };
 
   return (
-    <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full min-h-screen">
+    <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full h-screen overflow-hidden">
       {/* Blur effect when profile is open */}
       <div className={`${isProfileOpen ? 'backdrop-blur-sm' : ''}`}>
         <Navbar openProfile={openProfile} />
@@ -72,7 +72,7 @@ function App() {
 
         <header className='bg-transparent'>
           <div className='container mx-auto'>
-            <h1 className='animate-text text-center mt-10 bg-gradient-to-r bg-clip-text text-transparent 
+            <h1 className='animate-text text-center mt-3 bg-gradient-to-r bg-clip-text text-transparent 
                                     from-[#e79995] via-[#da935d] to-[#9a3bd2]'>
               Snake Game
             </h1>
