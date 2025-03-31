@@ -17,7 +17,7 @@ export function ScoreBoard({ score, highScore, leaderboard }: ScoreBoardProps) {
     const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
 
     return (
-        <div className="scoreboard flex h-[400px] w-[300px] mt-20 bg-gradient-to-b from-[#0f0516] to-[#9a3bd2] rounded-xl border-4 border-[#9a3bd2] flex-col items-center justify-between pixel-font retro-glow">
+        <div className="scoreboard flex h-[400px] w-[300px] mt-5 bg-gradient-to-b from-[#0f0516] to-[#9a3bd2] rounded-xl border-4 border-[#9a3bd2] flex-col items-center justify-between pixel-font retro-glow">
             {/* Username Display */}
             <div className="username text-center text-[#da935d] pixel-text mt-4">
                 <h3>Player: <span className="glow">{localStorage.getItem('username') || 'Guest'}</span></h3>

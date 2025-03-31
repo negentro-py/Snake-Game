@@ -26,8 +26,8 @@ export function CharacterSelect({
     };
 
     return (
-        <section className="flex items-center justify-center min-h-screen pixel-font ">
-            <div className="character-selection-container bg-[#2d1b3d] p-8 rounded-lg border-4 border-[#da935d] shadow-[0_0_20px_#da935d] pixel-border">
+        <section className="flex items-center justify-center min-h-screen pixel-font mt-[-60px]">
+            <div className="character-selection-container bg-[#2d1b3d] p-8 rounded-lg border-4 border-[#da935d] shadow-[0_0_20px_#da935d] pixel-border mt-[-60px]">
                 <h2 className="text-4xl text-[#e79995] text-center mb-8 uppercase tracking-wider pixel-text">
                     Select Your Character!
                 </h2>
