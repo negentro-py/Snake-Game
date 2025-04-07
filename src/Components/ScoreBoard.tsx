@@ -2,8 +2,8 @@ import React from 'react';
 import './ScoreBoard.css';
 
 interface LeaderboardEntry {
-    username: string;
-    score: number;
+    name: string;
+    highscore: number;
 }
 
 interface ScoreBoardProps {
@@ -14,7 +14,7 @@ interface ScoreBoardProps {
 
 export function ScoreBoard({ score, highScore, leaderboard }: ScoreBoardProps) {
     // Sort the leaderboard by score (descending)
-    const sortedLeaderboard = [...leaderboard].sort((a, b) => b.score - a.score);
+    const sortedLeaderboard = [...leaderboard].sort((a, b) => b.highscore - a.highscore);
 
     return (
         <div className="scoreboard flex h-[400px] w-[300px] mt-5 bg-gradient-to-b from-[#0f0516] to-[#9a3bd2] rounded-xl border-4 border-[#9a3bd2] flex-col items-center justify-between pixel-font retro-glow">
@@ -40,8 +40,8 @@ export function ScoreBoard({ score, highScore, leaderboard }: ScoreBoardProps) {
                 <ul className="leaderboard-list">
                     {sortedLeaderboard.map((entry, index) => (
                         <li key={index} className="flex justify-between">
-                            <span>{index + 1}. {entry.username}</span>
-                            <span>{entry.score}</span>
+                            <span>{index + 1}. {entry.name}</span>
+                            <span>{entry.highscore}</span>
                         </li>
                     ))}
                 </ul>

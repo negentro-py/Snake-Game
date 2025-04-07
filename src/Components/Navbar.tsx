@@ -1,20 +1,45 @@
 import { useState } from "react";
-import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode"; // To decode the JWT token
+import { GoogleOAuthProvider, GoogleLogin, googleLogout, CredentialResponse } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+import { backendUrl, User } from "../App";
 
 interface NavbarProps {
     openProfile: () => void; // Function to open the profile popup
+    setUser: (user: User) => void;
+    user: User | null;
 }
 
-export function Navbar({ openProfile }: NavbarProps) {
+export function Navbar({ openProfile, user, setUser }: NavbarProps) {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const [user, setUser] = useState(null); // Store user information
 
     // Handle Google login success
-    const handleLoginSuccess = (credentialResponse) => {
-        const decoded = jwtDecode(credentialResponse.credential);
-        setUser(decoded); // Save user info
-        setIsProfileOpen(false); // Close dropdown after login
+    const handleLoginSuccess = async (credentialResponse: CredentialResponse) => {
+        const token = credentialResponse.credential as string;
+
+        const decoded = jwtDecode(token);
+
+        const user = {
+            // @ts-ignore
+            email: decoded.email,
+            // @ts-ignore
+            name: decoded.name,
+            // @ts-ignore
+            picture: decoded.picture,
+            token: token,
+        };
+
+        setUser(user);
+
+        await fetch(`${backendUrl}/me`, {
+            method: "PATCH",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+        });
+
+        setIsProfileOpen(false);
     };
 
     // Handle Google login error

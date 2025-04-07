@@ -7,6 +7,10 @@ import { ScoreBoard } from './Components/ScoreBoard';
 import { Settings } from './Components/Settings';
 import { Profile } from './Components/Profile'; // Import the Profile component
 
+export const backendUrl = "http://localhost:3000";
+
+export type User = { email: string; name: string; picture: string; token: string; }
+
 interface LeaderboardEntry {
   username: string;
   score: number;
@@ -20,8 +24,8 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [isProfileOpen, setIsProfileOpen] = useState(false); // State to control Profile popup
-  const [username, setUsername] = useState<string>(''); // State to store the username
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]); // State to store leaderboard data
+  const [user, setUser] = useState<User | null>(null); // Store user information
 
   const characterChoice = () => {
     setSelectCharacter(true);
@@ -35,18 +39,41 @@ function App() {
     setScore(0);
   };
 
-  const handleGameEnd = () => {
+  const handleGameEnd = async () => {
     setGameEnded(true);
+
+    if (!user) return;
+
+    const userResponse = await fetch(`${backendUrl}/me`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${user.token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    const fetchedUser = await userResponse.json();
+
+    if (score > fetchedUser.highscore) {
+      await fetch(`${backendUrl}/me`, {
+        method: "PATCH",
+        headers: {
+          "Authorization": `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          highscore: score,
+        }),
+      });
+    }
+
     if (score > highScore) {
       setHighScore(score);
     }
-    // Add the current score to the leaderboard
-    if (username) {
-      setLeaderboard((prev) => [
-        ...prev,
-        { username, score }
-      ]);
-    }
+
+    const leaderboardResponse = await fetch(`${backendUrl}/leaderboard`);
+    const fetchedLeaderboard = await leaderboardResponse.json();
+    setLeaderboard(fetchedLeaderboard);
   };
 
   const openProfile = () => {
@@ -57,9 +84,20 @@ function App() {
     setIsProfileOpen(false);
   };
 
-  const handleSaveProfile = (newUsername: string, bio: string) => {
-    setUsername(newUsername); // Save the username
-    console.log("Bio:", bio); // Optional: Handle bio if needed
+  const handleSaveProfile = async (newUsername: string, bio: string) => {
+    if (!user) return;
+
+    await fetch(`${backendUrl}/me`, {
+      method: "PATCH",
+      headers: {
+        "Authorization": `Bearer ${user.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: newUsername
+      }),
+    });
+
     closeProfile(); // Close the profile popup
   };
 
@@ -67,7 +105,7 @@ function App() {
     <main className="bg-gradient-to-b from-[#f8f1fc] to-[#e79995] flex flex-col w-full h-screen overflow-hidden">
       {/* Blur effect when profile is open */}
       <div className={`${isProfileOpen ? 'backdrop-blur-sm' : ''}`}>
-        <Navbar openProfile={openProfile} />
+        <Navbar openProfile={openProfile} setUser={setUser} user={user} />
         <Settings />
 
         <header className='bg-transparent'>
