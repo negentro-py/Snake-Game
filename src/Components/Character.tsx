@@ -9,6 +9,7 @@ export function Character({ imageSrc, name }: { imageSrc: string; name: string }
                     className="w-full h-full rounded-full pixelated"
                 />
             </div>
+            
 
             {/* Name */}
             <h3 className="text-2xl text-[#e79995] uppercase tracking-wider pixel-text">
@@ -19,6 +20,7 @@ export function Character({ imageSrc, name }: { imageSrc: string; name: string }
             <p className="text-sm text-[#da935d] mt-1 pixel-text">
                 Your Choice
             </p>
+            
         </div>
     );
 }
