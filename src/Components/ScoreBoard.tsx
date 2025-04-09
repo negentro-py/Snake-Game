@@ -24,7 +24,7 @@ export function ScoreBoard({ score, highScore, leaderboard }: ScoreBoardProps) {
             </div>
 
             {/* Score and High Score Section */}
-            <div className="flex justify-between w-full px-4 mt-4">
+            <div className="flex flex-col items-center w-full px-4 mt-4 space-y-2">
                 <div className="score text-center tracking-wide pixel-text">
                     <h3>Score: <span id="score" className="glow">{score}</span></h3>
                 </div>

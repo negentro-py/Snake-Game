@@ -130,8 +130,16 @@ function App() {
         )}
 
         <div className="flex-grow flex flex-col items-center justify-center">
+      
           {!selectCharacter && (
-            <div className="flex justify-center mt-4">
+            <div className="flex flex-col items-center justify-center mt-4">
+           {/* GIF only shows before character is selected */}
+            <img
+               src="./src/assets/snakegamerecording.gif"
+               alt="cool gif"
+               className="w-[400px] mx-auto"
+            />
+
               <button
                 onClick={characterChoice}
                 id="Choose a Character"
