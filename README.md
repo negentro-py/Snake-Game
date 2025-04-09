@@ -6,7 +6,7 @@ This is a reiteration of the classic "Snake Game" with a retro 8-bit theme. Whil
 ## Installation & Usage  
 ### Deployment  
 The application is containerized using Docker and hosted at:  
-🔗 [kitty.pictures](https://kitty.pictures)  
+🔗 [SnakeGame.kitty.pictures](https://SnakeGame.kitty.pictures)    
 
 ### User Guide  
 No installation required. Simply:  
